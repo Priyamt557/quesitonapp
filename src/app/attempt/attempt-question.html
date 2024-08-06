@@ -1,0 +1,23 @@
+<form class="w-100" [formGroup]="form" (ngSubmit)="submitHandler()">
+    <h3>Question:{{quedata?.question}}</h3>
+
+    <mat-form-field class="w-100" *ngIf="quedata.answertype == 'paragraph'" style="width: 100%;" appearance="fill">
+        <mat-label>Paragraph Input</mat-label>
+        <textarea matInput placeholder="" formControlName="paragraph" required rows="4"></textarea>
+    </mat-form-field>
+    <section class="example-section" *ngIf="quedata.answertype == 'multiple-choice'" >
+        <h4>Select Options:</h4>
+        <p><mat-checkbox formControlName="option1" *ngIf="quedata.option1" [value]="quedata.option1">{{quedata.option1}}</mat-checkbox></p>
+        <p><mat-checkbox formControlName="option2" *ngIf="quedata.option2" [value]="quedata.option2">{{quedata.option2}}</mat-checkbox></p>
+        <p><mat-checkbox formControlName="option3" *ngIf="quedata.option3" [value]="quedata.option3">{{quedata.option3}}</mat-checkbox></p>
+        <p><mat-checkbox formControlName="option4" *ngIf="quedata.option4" [value]="quedata.option4">{{quedata.option4}}</mat-checkbox></p>
+        <p><mat-checkbox formControlName="option5" *ngIf="quedata.option5" [value]="quedata.option5">{{quedata.option5}}</mat-checkbox></p>
+        <p><mat-checkbox *ngIf="quedata.otherinput" #other  >Other</mat-checkbox> 
+            <mat-form-field class="w-100" style="width: 100%;" appearance="fill" required>
+            <mat-label>Please Define</mat-label>
+            <input matInput >
+        </mat-form-field></p>
+        
+      </section>
+    <button mat-raised-button class="m-auto d-flex" color="primary" type="submit">Submit</button>
+</form>

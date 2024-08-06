@@ -1,0 +1,55 @@
+<form class="w-100" [formGroup]="form" (ngSubmit)="submitHandler()">
+    <section class="d-flex">
+        <mat-form-field style="width: 100%;" appearance="fill">
+            <mat-label>Choose the answer format:</mat-label>
+            <mat-select (selectionChange)="switchFormat($event)" formControlName="answertype">
+                <mat-option value="paragraph" >Paragraph Answer</mat-option>
+                <mat-option value="multiple-choice">Multiple Choice</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </section>
+
+    <mat-form-field class="w-100" style="width: 100%;" appearance="fill" required>
+        <mat-label>Type Question Here</mat-label>
+        <input matInput formControlName="question">
+    </mat-form-field>
+
+    <mat-form-field class="w-100" *ngIf="answerformat == 'paragraph'" style="width: 100%;" appearance="fill">
+        <mat-label>Paragraph Input</mat-label>
+        <textarea matInput placeholder="" formControlName="paragraph" required rows="4"></textarea>
+    </mat-form-field>
+
+    <section class="example-section" *ngIf="answerformat == 'multiple-choice'">
+        <mat-form-field class="w-100" style="width: 100%;" appearance="fill" required>
+            <mat-label>Add Answer Option1</mat-label>
+            <input matInput formControlName="option1" >
+        </mat-form-field>
+        <mat-form-field class="w-100" style="width: 100%;" appearance="fill" required>
+            <mat-label>Add Answer Option2</mat-label>
+            <input matInput formControlName="option2">
+        </mat-form-field>
+        <mat-form-field class="w-100" style="width: 100%;" *ngIf="options >=3" appearance="fill" required>
+            <mat-label>Add Answer Option3</mat-label>
+            <input matInput formControlName="option3">
+        </mat-form-field>
+        <mat-form-field class="w-100" style="width: 100%;" *ngIf="options >=4" appearance="fill" required>
+            <mat-label>Add Answer Option4</mat-label>
+            <input matInput formControlName="option4">
+        </mat-form-field>
+        <mat-form-field class="w-100" style="width: 100%;" *ngIf="options >=5" appearance="fill" required>
+            <mat-label>Add Answer Option5</mat-label>
+            <input matInput formControlName="option5">
+        </mat-form-field>
+        <button mat-button type="button" *ngIf="options < 5" (click)="addoptions()">
+            <mat-icon>add</mat-icon>Add another answer
+        </button>
+        <section class="example-section">
+            <mat-checkbox class="example-margin" formControlName="otherinput" >Allow user to specify their own answer</mat-checkbox>
+        </section>
+        <section class="example-section">
+            <mat-checkbox class="example-margin">This field is required</mat-checkbox>
+        </section>
+    </section>
+
+    <button mat-raised-button class="m-auto d-flex" color="primary" type="submit">Submit</button>
+</form>

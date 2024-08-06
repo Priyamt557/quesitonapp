@@ -1,0 +1,9 @@
+<mat-list>
+<div mat-subheader>Questions:</div>
+<mat-list-item *ngFor="let question of questions">
+    <mat-icon mat-list-icon>note</mat-icon>
+    <div mat-line><b>{{question.question}}</b></div>
+    <div mat-line>Type: {{question.answertype}} </div>
+    <button mat-raised-button color="primary" (click)="onAttempt(question)">Attempt</button>
+  </mat-list-item>
+</mat-list>
